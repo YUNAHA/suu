@@ -1,25 +1,29 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
+import { Box } from '@yamada-ui/react';
+import Home from './pages/Home';
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Main />
+    </Router>
+  );
+}
+
+function Main() {
+  const location = useLocation();
+
+  return (
+    <Box className="App">
+      {location.pathname === '/'}
+      <Box mt={location.pathname === '/' ? "60px" : "0px"}>
+        <Routes>
+          <Route path="/" element={<Home/>} />
+        </Routes>
+      </Box>
+    </Box>
   );
 }
 
