@@ -35,7 +35,7 @@ const Home = () => {
   };
 
   const bodyStyle = {
-    height: <size className="height 9"></size>,
+    height: size.height*1.1,
     width: size.width*0.75,
     background: "white",//スタバカラー　黒は0F0F0F
     fontFamily: "Meiryo UI",
@@ -66,7 +66,6 @@ const Home = () => {
 
   return (
     <>
-    <div style={{ backgroundColor: "#cfcfcc", height: size.height }}></div>
     <Box 
     position="fixed"
     top={size.height * 0.3}
@@ -77,12 +76,16 @@ const Home = () => {
 
     <Box
     style={bodyStyle}
-    position="fixed"
-    bottom={size.height * 0.5}
-    left="50%"
-    transform="translate(-50%,50%)"
+    transform="translate(16%,10%)"
     zIndex="100"
     >
+        <table style={cstmTextStyle}>
+        <tr>
+          <td >画像をアップロード</td>
+          <td style={textbox}><input type="file" accept='image/*'/></td>          
+        </tr>
+        </table>
+
         <table style={cstmTextStyle}>
         <tr>
           <td >カスタム名</td>
@@ -212,7 +215,7 @@ const Home = () => {
             <br/>
             ジンジャー
             <input type='checkbox' name="syrup"/>
-            バレンシア
+            |バレンシア
             <input type='checkbox' name="syrup"/>
           </td>          
         </tr>
@@ -351,7 +354,7 @@ const Home = () => {
         <table style={cstmTextStyle}>
         <tr>
           <td >その他</td>
-          <td style={textbox}><input type="text" name="cstmname"/></td>          
+          <td style={textbox}><textarea name="others"/></td>          
         </tr>
         </table>
 
