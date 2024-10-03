@@ -23,7 +23,7 @@ const Home = () => {
     border: "none",
     borderRadius: "10%",
     padding: "2px",
-    fontSize: "125%",
+    fontSize: "150%",
     color: "white"
   };
 
@@ -43,7 +43,7 @@ const Home = () => {
     fontFamily: "Meiryo UI",
     borderTop: "none",
     borderRadius: "5%",
-    fontSize: "125%",
+    fontSize: "100%",
     color: "#01714B"
   };
 
@@ -52,10 +52,10 @@ const Home = () => {
     fontFamily: "Meiryo UI",
     textAlign:"left",
     borderBottom: "dotted",
-    fontSize: "100%",
+    fontSize: "125%",
     color: "#01714B",
     paddingLeft:"5%",
-    marginTop:"5%"
+    marginTop:size.height*0.05
   };
 
   const textbox = {
@@ -64,7 +64,7 @@ const Home = () => {
     textAlign:"right",
     fontSize: "100%",
     color: "#01714B",
-    paddingRight:"5%"
+    paddingRight:"2%"
   };
 
   return (
