@@ -25,15 +25,18 @@ const Home = () => {
       top={size.height * 0.3}>
         <ResearchHeader />
       </Box>
-      <Box
-      position="fixed"
-      top={size.height * 0.5}
-      left="50%"
-      transform="translate(-50%, -50%)"
-      zIndex="2000">
-        <Text>東京電機大学 Addtion</Text>
-        <Button onClick={handlehomeClick}>ホーム</Button>
-        <Button onClick={handleAddClick}>追加</Button>
+      <Box>
+        <Box
+          position="fixed"
+          top={size.height * 0.5}
+          left="50%"
+          transform="translate(-50%, -50%)"
+          zIndex="2000"
+        >
+          <Text>東京電機大学 Research</Text>
+          <Button onClick={handlehomeClick}>ホーム</Button>
+          <Button onClick={handleAddClick}>追加</Button>
+        </Box>
       </Box>
     </>
   );
