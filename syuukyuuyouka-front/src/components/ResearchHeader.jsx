@@ -13,7 +13,7 @@ const Header = ({ onFilterChange, onSearch }) => {
 
   return (
     <Box>
-      <Box as="header" bg="orange.50" p={2} position="fixed" w="100%" top="0" zIndex="1000">
+      <Box as="header" bg="green" p={2} position="fixed" w="100%" top="0" zIndex="1000">
         <Flex align="center">
           <Heading as="h3" size="lg">
             ノーカスタム・ノーライフ
