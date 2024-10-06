@@ -1,24 +1,41 @@
-import React, { useEffect, useState, useRef, useCallback } from 'react';
-import { redirect, useNavigate } from 'react-router-dom';
-import { Text, Flex, Box, Portal,Button, color} from '@yamada-ui/react';
+import React, { useState } from 'react'; 
+import { useNavigate } from 'react-router-dom';
+import { Box, Button } from '@yamada-ui/react';
 import AddtionHeader from '../components/AddtionHeader';
 import { useWindowSize } from "@uidotdev/usehooks";
+import axios from 'axios';
 
-const Home = () => {
-  const navigate = useNavigate(); // useNavigateフックを使ってナビゲーション機能を取得
+const Addtion = () => {
+  const navigate = useNavigate();
   const size = useWindowSize();
 
-  // ボタンがクリックされたときに実行される関数
-  const handleSearchClick = () => {
-    navigate('/Research'); // "/Research" に遷移
+  const [formData, setFormData] = useState({
+    cstmname: '',
+    kind: '',
+    custom1: '',
+    custom2: '',
+    custom3: '',
+    custom4: ''
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
   };
 
-  const handlehomeClick = () => {
-    navigate('/'); // "/" home に遷移
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post('http://localhost:3101/api/v1/posts', formData);
+      console.log('Data submitted:', response.data);
+      navigate('/');
+    } catch (error) {
+      console.error('API Error:', error);
+    }
   };
 
   const buttonStyle = {
-    background: "#01714B",//スタバカラー　黒は0F0F0F
+    background: "#01714B",
     fontFamily: "Meiryo UI",
     border: "none",
     borderRadius: "10%",
@@ -27,19 +44,10 @@ const Home = () => {
     color: "white"
   };
 
-  const footerStyle = {
-    width: size.width,
-    fontFamily: "Meiryo UI",
-    fontSize: "125%",
-    color: "#01714B",
-    background: "white",
-    borderTop: "dotted"
-  };
-
   const bodyStyle = {
-    height: size.height*0.75,
-    width: size.width*0.75,
-    background: "white",//スタバカラー　黒は0F0F0F
+    height: size.height * 0.75,
+    width: size.width * 0.75,
+    background: "white",
     fontFamily: "Meiryo UI",
     borderTop: "none",
     borderRadius: "5%",
@@ -47,127 +55,136 @@ const Home = () => {
     color: "#01714B"
   };
 
-  const cstmTextStyle = {
-    width: size.width*0.75,
+  const customTextStyle = {
+    width: size.width * 0.75,
     fontFamily: "Meiryo UI",
-    textAlign:"left",
+    textAlign: "left",
     borderBottom: "dotted",
     fontSize: "125%",
     color: "#01714B",
-    paddingLeft:"5%",
-    marginTop:size.height*0.05
+    paddingLeft: "5%"
   };
 
   const textbox = {
-
     fontFamily: "Meiryo UI",
-    textAlign:"right",
+    textAlign: "right",
     fontSize: "100%",
     color: "#01714B",
-    paddingRight:"2%"
+    paddingRight: "2%"
   };
 
   return (
     <>
-    <Box 
-    position="fixed"
-    top={size.height * 0.3}
-    zIndex="200"
-    >
-      <AddtionHeader/>
-    </Box>
+      <Box
+        position="fixed"
+        top={size.height * 0.3}
+        zIndex="200"
+      >
+        <AddtionHeader />
+      </Box>
 
-    <div style={{ backgroundColor: "#cfcfcc", height: size.height }}></div>
+      <div style={{ backgroundColor: "#cfcfcc", height: size.height }}></div>
 
-    <Box
-    style={bodyStyle}
-    position="fixed"
-    bottom={size.height * 0.5}
-    left="50%"
-    transform="translate(-50%,50%)"
-    zIndex="100"
-    >
-        <text style={{
-          fontFamily: "Meiryo UI",
-          textAlign:"center",
-          borderBottom: "solid",
-          fontSize: "150%",
-          color: "#01714B"
+      <Box
+        style={bodyStyle}
+        position="fixed"
+        bottom={size.height * 0.5}
+        left="50%"
+        transform="translate(-50%,50%)"
+        zIndex="100"
+      >
+        <form onSubmit={handleSubmit}>
+          <div style={{
+            fontFamily: "Meiryo UI",
+            textAlign: "center",
+            borderBottom: "solid",
+            fontSize: "150%",
+            color: "#01714B"
           }}>
-          <br/>カスタムを投稿する 
-          </text>
+            <br />カスタムを投稿する
+          </div>
 
-        <table style={cstmTextStyle}>
-        <tr>
-          <td >カスタム名</td>
-          <td style={textbox}><input type="text" name="cstmname"/></td>          
-        </tr>
-        </table>
+          <table style={customTextStyle}>
+            <tbody>
+              <tr>
+                <td>カスタム名</td>
+                <td style={textbox}><input type="text" name="cstmname" value={formData.cstmname || ''} onChange={handleChange} /></td>
+              </tr>
+            </tbody>
+          </table>
 
-        <br/>
+          <br />
 
-        <table style={cstmTextStyle}>
-        <tr>
-          <td >カスタム元メニュー</td>
-          <td style={textbox}><input type="text" name="kind"/></td>          
-        </tr>
-        </table>
+          <table style={customTextStyle}>
+            <tbody>
+              <tr>
+                <td>カスタム元メニュー</td>
+                <td style={textbox}><input type="text" name="kind" value={formData.kind || ''} onChange={handleChange} /></td>
+              </tr>
+            </tbody>
+          </table>
 
-        <br/>
+          <br />
 
-        <table style={cstmTextStyle}>
-        <tr>
-          <td >カスタム1</td>
-          <td style={textbox}><input type="text" name="cstm1"/></td>          
-        </tr>
-        </table>
+          <table style={customTextStyle}>
+            <tbody>
+              <tr>
+                <td>カスタム1</td>
+                <td style={textbox}><input type="text" name="custom1" value={formData.custom1 || ''} onChange={handleChange} /></td>
+              </tr>
+            </tbody>
+          </table>
 
-        <br/>
+          <br />
 
-        <table style={cstmTextStyle}>
-        <tr>
-          <td >カスタム2</td>
-          <td style={textbox}><input type="text" name="cstm2"/></td>          
-        </tr>
-        </table>
+          <table style={customTextStyle}>
+            <tbody>
+              <tr>
+                <td>カスタム2</td>
+                <td style={textbox}><input type="text" name="custom2" value={formData.custom2 || ''} onChange={handleChange} /></td>
+              </tr>
+            </tbody>
+          </table>
 
-        <br/>
+          <br />
 
-        <table style={cstmTextStyle}>
-        <tr>
-          <td >カスタム3</td>
-          <td style={textbox}><input type="text" name="cstm3"/></td>          
-        </tr>
-        </table>
+          <table style={customTextStyle}>
+            <tbody>
+              <tr>
+                <td>カスタム3</td>
+                <td style={textbox}><input type="text" name="custom3" value={formData.custom3 || ''} onChange={handleChange} /></td>
+              </tr>
+            </tbody>
+          </table>
 
-        <br/>
+          <br />
 
-        <table style={cstmTextStyle}>
-        <tr>
-          <td >カスタム4</td>
-          <td style={textbox}><input type="text" name="cstm4"/></td>          
-        </tr>
-        </table>
+          <table style={customTextStyle}>
+            <tbody>
+              <tr>
+                <td>カスタム4</td>
+                <td style={textbox}><input type="text" name="custom4" value={formData.custom4 || ''} onChange={handleChange} /></td>
+              </tr>
+            </tbody>
+          </table>
 
-        <br/>
+          <br />
 
-        <input type="submit" style={buttonStyle} name="submit" value="カスタムを投稿する"></input>
-    </Box>
-    
+          <input type="submit" style={buttonStyle} value="カスタムを投稿する"></input>
+        </form>
+      </Box>
 
-    <Box  style={footerStyle}
-    position="fixed"
-    bottom= "0%"
-    left="50%"
-    transform="translate(-50%,0%)"
-    zIndex="200"
-    >
-      <Text> 東京電機大学 Addition </Text>
-        <Button style={buttonStyle} onClick={handlehomeClick}>ホーム</Button>
-        <Button style={buttonStyle} onClick={handleSearchClick}>検索</Button>
-    </Box>
+      <Box 
+        position="fixed"
+        bottom="0%"
+        left="10%"
+        transform="translate(-50%,0%)"
+        zIndex="200"
+      >
+        <Button style={buttonStyle} onClick={() => navigate('/Research')}>検索</Button>
+      </Box>
     </>
   );
 };
 
-export default Home;
+export default Addtion;

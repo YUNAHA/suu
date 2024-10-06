@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import Research from './pages/Research';
 import Addtion from './pages/Addtion';
 import Custom1 from './pages/Custom1';
+import PostDetail from './PostDetail';
 import './App.css';
 
 function App() {
@@ -26,7 +27,7 @@ function Main() {
           <Route path="/" element={<Home/>} />
           <Route path="Research" element={<Research/>} />
           <Route path="Addtion" element={<Addtion/>} />
-          <Route path="Custom1" element={<Custom1/>} />
+          <Route path="/post/:id" element={<PostDetail />} /> 
         </Routes>
       </Box>
     </Box>

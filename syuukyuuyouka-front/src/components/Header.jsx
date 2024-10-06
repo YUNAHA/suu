@@ -34,7 +34,7 @@ const Header = ({ onFilterChange, onSearch }) => {
   return (
     <header className="header">
       <div className="header-content">
-        <h1 className="header-title">完全週休8日希望</h1>
+        <h1 className="header-title">ノーカスタム・ノーライフ</h1>
         <div className="menu-container">
           <button className="menu-button" onClick={toggleMenu}>
             ☰

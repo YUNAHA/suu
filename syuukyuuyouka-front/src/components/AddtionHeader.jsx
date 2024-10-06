@@ -26,7 +26,7 @@ const Header = ({ onFilterChange, onSearch }) => {
       <Box as="header" bg="orange.50" p={2} position="fixed" w="100%" top="0" zIndex="200">
         <Flex align="center">
           <Heading as="h3" size="lg" style={headerStyle}>
-            完全週休8日希望
+            ノーカスタム・ノーライフ
           </Heading>
         </Flex>
       </Box>

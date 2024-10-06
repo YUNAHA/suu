@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { Text, Flex, Box, Portal, Button, Image } from "@yamada-ui/react";
 import Header from "../components/Header";
 import { useWindowSize } from "@uidotdev/usehooks";
+import Phote from "../components/syuukyuu.jpg";
 
 const Home = () => {
   const navigate = useNavigate(); // useNavigateフックを使ってナビゲーション機能を取得
@@ -38,7 +39,7 @@ const Home = () => {
         <Flex justifyContent="space-between" gap="4" mb="8">
           <Box w="30%">
             <Image
-              src="https://images.dog.ceo/breeds/terrier-scottish/n02097298_4020.jpg" // 画像URLを指定
+              src={Phote} // 画像URLを指定
               alt="おすすめ1"
               w="100%"
               h="auto"
@@ -51,7 +52,7 @@ const Home = () => {
           </Box>
           <Box w="30%">
             <Image
-              src="https://images.dog.ceo/breeds/terrier-scottish/n02097298_4020.jpg" // 画像URLを指定
+              src={Phote} // 画像URLを指定
               alt="おすすめ2"
               w="100%"
               h="auto"
@@ -64,7 +65,7 @@ const Home = () => {
           </Box>
           <Box w="30%">
             <Image
-              src="https://images.dog.ceo/breeds/terrier-scottish/n02097298_4020.jpg" // 画像URLを指定
+              src={Phote} // 画像URLを指定
               alt="おすすめ3"
               w="100%"
               h="auto"
@@ -80,7 +81,7 @@ const Home = () => {
         <Flex justifyContent="space-between" gap="4">
           <Box w="30%">
             <Image
-              src="https://images.dog.ceo/breeds/terrier-scottish/n02097298_4020.jpg" // 新しい画像URLを指定
+              src={Phote} // 新しい画像URLを指定
               alt="おすすめ4"
               w="100%"
               h="auto"
@@ -93,7 +94,7 @@ const Home = () => {
           </Box>
           <Box w="30%">
             <Image
-              src="https://images.dog.ceo/breeds/terrier-scottish/n02097298_4020.jpg" // 新しい画像URLを指定
+              src={Phote} // 新しい画像URLを指定
               alt="おすすめ5"
               w="100%"
               h="auto"
@@ -106,7 +107,7 @@ const Home = () => {
           </Box>
           <Box w="30%">
             <Image
-              src="https://images.dog.ceo/breeds/terrier-scottish/n02097298_4020.jpg" // 新しい画像URLを指定
+              src={Phote} // 新しい画像URLを指定
               alt="おすすめ6"
               w="100%"
               h="auto"
