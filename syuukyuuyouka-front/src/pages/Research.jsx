@@ -46,22 +46,33 @@ const Research = () => {
   position="fixed"
   top={size.height * 0.2}
   left="50%"
-  transform="translate(-50%, -50%)"
+  transform="translate(-50%, 0)"
   zIndex="2000"
+  sx={{
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center', 
+    marginTop: '20px',
+    width: '320px', // width of the container
+    height: '300px', // set a fixed height for the container
+    overflowY: 'auto', // enable vertical scrolling
+    border: '1px solid #ccc', // optional, add a border for visual distinction
+    padding: '10px', // optional, add padding inside the box
+  }}
 >
-  <ul>
+  <ul style={{ padding: 0, margin: 0 }}>
     {posts.map((post) => (
-      <li key={post.id}>
+      <li key={post.id} style={{ listStyleType: 'none' }}>
         <Button
           onClick={() => handleDetailClick(post.id)}
           sx={{
-            width: '200px',
+            width: '280px',
             height: '50px',
             fontSize: '16px',
-            color: 'black', // テキストの色を指定
-            backgroundColor: 'white', // ボタンの背景色を指定
+            color: 'black',
+            backgroundColor: 'yellow',
             margin: '10px 0',
-            display: 'flex', // テキストを中央に配置
+            display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
           }}
@@ -71,17 +82,23 @@ const Research = () => {
       </li>
     ))}
   </ul>
-
 </Box>
       <Box
         position="fixed"
-        top={size.height * 0.7}
+        top={size.height * 0.75}
         left="50%"
         transform="translate(-50%, -50%)"
         zIndex="2000"
+        sx={{
+          display: 'flex',
+          flexDirection: 'row', // ボタンを水平に並べる
+          alignItems: 'center', // 垂直方向の中央揃え
+          justifyContent: 'center', // 水平方向の中央揃え
+          gap: '10px', // ボタン間のスペース
+        }}
       >
-        <Button onClick={handleHomeClick}>ホーム</Button>
-        <Button onClick={handleAddClick}>追加</Button>
+        <Button onClick={handleHomeClick} bg="#38A77F">ホーム</Button>
+        <Button onClick={handleAddClick} bg="#38A77F">追加</Button>
       </Box>
     </div>
   );

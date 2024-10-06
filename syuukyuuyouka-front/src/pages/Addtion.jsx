@@ -1,6 +1,6 @@
 import React, { useState } from 'react'; 
 import { useNavigate } from 'react-router-dom';
-import { Box, Button } from '@yamada-ui/react';
+import { Box, Button ,Flex,Input} from '@yamada-ui/react';
 import AddtionHeader from '../components/AddtionHeader';
 import { useWindowSize } from "@uidotdev/usehooks";
 import axios from 'axios';
@@ -170,19 +170,22 @@ const Addtion = () => {
 
           <br />
 
-          <input type="submit" style={buttonStyle} value="カスタムを投稿する"></input>
+          <Input type="submit" style={buttonStyle} value="カスタムを投稿する" width='200px' height='50px' ></Input>
         </form>
       </Box>
 
-      <Box 
+      <Flex
         position="fixed"
-        bottom="0%"
-        left="10%"
-        transform="translate(-50%,0%)"
+        top={size.height * 0.93}
+        left="50%"
+        transform="translate(-50%, -50%)"
         zIndex="200"
+        gap="10px"  // ボタン間のスペースを指定
+        justify="center"
       >
+        <Button style={buttonStyle} onClick={() => navigate('/')}>ホーム</Button>
         <Button style={buttonStyle} onClick={() => navigate('/Research')}>検索</Button>
-      </Box>
+      </Flex>
     </>
   );
 };

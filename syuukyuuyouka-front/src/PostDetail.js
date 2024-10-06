@@ -1,12 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import { Box, Button } from '@yamada-ui/react';
+import { useNavigate } from 'react-router-dom';
+import { useWindowSize } from "@uidotdev/usehooks";
 
 const PostDetail = () => {
   const { id } = useParams();  // URLから取得したIDを使用
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
+  const size = useWindowSize();
+
+  const handleHomeClick = () => {
+    navigate('/');
+  };
+
+  const handleAddClick = () => {
+    navigate('/Research');
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -30,6 +43,7 @@ const PostDetail = () => {
   if (!post) return <p>データが見つかりません。</p>;
 
   return (
+    <>
     <div>
       <h1>{post.cstmname}</h1>
       <p>種類: {post.kind}</p>
@@ -41,6 +55,24 @@ const PostDetail = () => {
       <p>更新日: {post.updated_at}</p>
       {post.image && <img src={post.image} alt={post.cstname} />}
     </div>
+    <Box
+        position="fixed"
+        top={size.height * 0.75}
+        left="50%"
+        transform="translate(-50%, -50%)"
+        zIndex="2000"
+        sx={{
+          display: 'flex',
+            flexDirection: 'row', // ボタンを水平に並べる
+            alignItems: 'center', // 垂直方向の中央揃え
+            justifyContent: 'center', // 水平方向の中央揃え
+            gap: '10px', // ボタン間のスペース
+          }}
+        >
+          <Button onClick={handleHomeClick} bg="#38A77F">ホーム</Button>
+          <Button onClick={handleAddClick} bg="#38A77F">検索</Button>
+        </Box>
+        </>
   );
 };
 
